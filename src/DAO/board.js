@@ -153,7 +153,7 @@ export const getTitlesByQuery = function (query) {
   ).sort({ boardTitle: 'asc' })
 }
 
-export const searchByTitleOrTag = function (query, size = 35, latestId, category) {
+export const searchByTitleOrTag = function (query, latestId, category, size = 35) {
   const option = {
     $or: [{ boardTitle: { $regex: query } }, { tags: query }],
     pub: 1,

@@ -98,7 +98,7 @@ export const getProfile = function (screenId) {
   return User.find({ _id: screenId }, { _id: 1, screenId: 1, nickname: 1 })
 }
 
-export const searchByScreenIdOrNickname = function (query, size = 35, latestId) {
+export const searchByScreenIdOrNickname = function (query, latestId, size = 35) {
   const option = {
     $or: [{ screenId: { $regex: query } }, { nickname: { $regex: query } }],
   }

@@ -75,7 +75,7 @@ export const getReports = function (contentId, contentType, isCopyright) {
     })
 }
 
-export const getReportLogs = function (size = 30, page, isCopyright) {
+export const getReportLogs = function (page, isCopyright, size = 30) {
   return ReportLog.find({isCopyright}).skip(page*30).limit(size)
 }
 

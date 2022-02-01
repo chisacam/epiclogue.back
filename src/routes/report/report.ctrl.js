@@ -34,7 +34,7 @@ export const getReportLogs = async (req, res, next) => {
     const page = await parseIntParam(req.query.page, 20)
     let data
     try{
-        data = await reportDAO.getReportLogs(size, page, req.query.isCopyright)
+        data = await reportDAO.getReportLogs(page, req.query.isCopyright, size)
     } catch(e) {
         return next(apiErrorGenerator(500, 'error get reportLog'))
     }
