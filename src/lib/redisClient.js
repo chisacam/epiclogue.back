@@ -6,6 +6,7 @@ import { logger } from '../configs/winston'
 
 const redisClient = createClient({
   url: process.env.NODE_ENV === 'test' ? process.env.REDIS_TEST_URL : process.env.REDIS_URL,
+  legacyMode: true,
 })
 
 redisClient.on('connect', () => {
@@ -15,10 +16,6 @@ redisClient.on('connect', () => {
 redisClient.on('error', err => {
   logger.error(`[RedisError] ${dayjs(new Date()).format('YYYY-MM-DD HH:mm:ss Z')} ${err}`)
 })
-
-(async () => {
-  await redisClient.connect()
-})()
 
 /**
  * Get/Set
