@@ -16,6 +16,11 @@ redisClient.on('error', err => {
   logger.error(`[RedisError] ${dayjs(new Date()).format('YYYY-MM-DD HH:mm:ss Z')} ${err}`)
 })
 
+(async () => {
+  await redisClient.connect()
+  return
+})()
+
 /**
  * Get/Set
  *  K: req.session.id
