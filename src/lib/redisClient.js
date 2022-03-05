@@ -18,7 +18,6 @@ redisClient.on('error', err => {
 
 (async () => {
   await redisClient.connect()
-  return
 })()
 
 /**
