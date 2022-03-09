@@ -18,7 +18,7 @@ import { swaggerSpec } from './configs/apiDoc'
 import { apiRequestHandler } from './lib/middleware/apiRequestHandler'
 import { errorHandler } from './lib/middleware/errorHandler'
 import { apiResponser } from './lib/middleware/apiResponser'
-import redisClient from './lib/redisClient'
+import redisClient, { setRedisClient } from './lib/redisClient'
 
 const app = express()
 const RedisStore = connectRedis(session)
@@ -29,7 +29,7 @@ const RedisStore = connectRedis(session)
 app.use(
   cors({
     credentials: true,
-    origin: process.env.NODE_ENV === 'production' ? '.epiclogue.com' : true,
+    origin: process.env.NODE_ENV === 'production' ? '.epiclogue.herokuapp.com' : true,
   })
 )
 app.use(
@@ -45,7 +45,7 @@ app.use(
       httpOnly: true,
       maxAge: 3600000, // 1h to ms
       sameSite: process.env.NODE_ENV === 'test' ? 'None' : 'Lax',
-      domain: process.env.NODE_ENV === 'test' ? 'localhost:3000' : '.epiclogue.com',
+      domain: process.env.NODE_ENV === 'test' ? 'localhost:3000' : '.epiclogue.herokuapp.com',
     },
   })
 )
@@ -55,6 +55,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
 app.use(helmet())
 
+setRedisClient(redisClient)
 connectDatabase()
 app.use(apiRequestHandler)
 
