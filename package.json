@@ -21,7 +21,7 @@
   "dependencies": {
     "@babel/cli": "^7.17.6",
     "@slack/webhook": "^6.0.0",
-    "aws-sdk": "^2.1087.0",
+    "aws-sdk": "^2.1089.0",
     "axios": "^0.26.0",
     "connect-redis": "^6.1.1",
     "cookie-parser": "~1.4.4",
@@ -53,14 +53,14 @@
     "winston-daily-rotate-file": "^4.6.1"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.14.7",
     "@jest/globals": "^27.5.1",
-    "@shelf/jest-mongodb": "^2.2.0",
+    "@shelf/jest-mongodb": "^2.2.1",
     "@types/express": "^4.17.12",
     "@types/node": "^17.0.21",
-    "@typescript-eslint/eslint-plugin": "^5.13.0",
-    "@typescript-eslint/parser": "^5.13.0",
+    "@typescript-eslint/eslint-plugin": "^5.14.0",
+    "@typescript-eslint/parser": "^5.14.0",
     "babel-jest": "^27.5.1",
+    "babel-preset-env": "^1.7.0",
     "cookie": "^0.4.2",
     "eslint": "^8.10.0",
     "eslint-config-airbnb-base": "^15.0.0",

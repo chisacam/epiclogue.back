@@ -38,7 +38,7 @@ app.use(
     resave: false,
     saveUninitialized: true,
     store: new RedisStore({
-      client: redisClient.getClient,
+      client: redisClient,
       url: process.env.NODE_ENV === 'test' ? process.env.REDIS_TEST_URL : process.env.REDIS_URL,
     }),
     cookie: {

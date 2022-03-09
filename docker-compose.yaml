@@ -1,6 +1,6 @@
 version: "3"
 
-networks: 
+networks:
   backend:
     driver: bridge
 
@@ -11,11 +11,11 @@ services:
       context: ./docker/server
       dockerfile: Dockerfile.prod
     volumes:
-      - ./:/usr/src/app  
+      - ./:/usr/src/app
     env_file:
       - ./.env
     networks:
-      - backend  
+      - backend
     depends_on:
       - mongodb1
     ports:
@@ -98,7 +98,7 @@ services:
     container_name: nginx
     restart: always
     image: nginx:latest
-    volumes: 
+    volumes:
       - ./epiclogue.ssl/cert:/ssl
       - ./epiclogue.ssl/conf/server.conf:/etc/nginx/nginx.conf
     ports:

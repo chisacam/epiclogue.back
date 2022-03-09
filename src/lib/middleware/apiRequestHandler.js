@@ -10,7 +10,7 @@ import { apiRequestLogger } from './apiRequestLogger'
 export const apiRequestHandler = async (req, res, next) => {
   try {
     const userSessionId = req.session.id
-    const userCache = await redisClient.getAsync(userSessionId)
+    const userCache = await redisClient.get(userSessionId)
     const accessToken = req.cookies?.access_token
 
     if (userCache) {
@@ -52,7 +52,7 @@ export const apiRequestHandler = async (req, res, next) => {
         userCacheValue.accessCount += 1
         userCacheValue.isMember = false
       }
-      redisClient.setWithTtl(userSessionId, 3600, JSON.stringify(userCacheValue))
+      redisClient.setEx(userSessionId, 3600, JSON.stringify(userCacheValue))
       req.user = { ...req.user, ...userCacheValue }
     } else {
       // 캐시된 세션이 없는 경우
@@ -79,7 +79,7 @@ export const apiRequestHandler = async (req, res, next) => {
       // else {
       //   // 캐싱된 세션도 없고 토큰도 없다 = 비회원 유저의 최초 접근이므로 초기 세션만 발급
       // }
-      redisClient.setWithTtl(req.session.id, 3600, JSON.stringify(userData))
+      redisClient.setEx(req.session.id, 3600, JSON.stringify(userData))
       req.user = { ...req.user, ...userData }
     }
     apiRequestLogger(req, res, next)
